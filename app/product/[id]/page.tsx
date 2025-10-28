@@ -44,7 +44,10 @@ export default function ProductPage() {
         <p className={styles.description}>{product.description}</p>
         <p className={styles.price}>${product.price}</p>
         <div className={styles.buttons}>
-          <button onClick={() => addToCart(product)}>Add to Cart</button>
+          <button onClick={() => addToCart({ ...product, quantity: 1 })}>
+            Add to Cart
+          </button>
+
           <button onClick={() => addToWishlist(product)}>♡ Wishlist</button>
         </div>
       </div>
