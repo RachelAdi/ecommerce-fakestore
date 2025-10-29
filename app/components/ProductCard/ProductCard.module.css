@@ -78,18 +78,25 @@
   transform: translateY(-2px);
 }
 
-/* כפתור לב */
-.buttons button:last-child {
-  background-color: transparent;
+.wishlistBtn {
+  font-size: 1.2rem;
+  background: none;
   border: 1px solid #ddd;
-  color: #555;
   border-radius: 8px;
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem 0.6rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  color: #555; /* לבן/אפור כשהמוצר לא ב-Wishlist */
 }
 
-.buttons button:last-child:hover {
-  border-color: #f8a300;
-  color: #f8a300;
+/* כפתור לב פעיל */
+.activeWishlistBtn {
+  font-size: 1.2rem;
+  background: none;
+  border: 1px solid #f8a300;
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  color: #f8a300; /* אדום כשהמוצר ב-Wishlist */
+  transition: all 0.2s ease;
 }

@@ -16,6 +16,10 @@
   text-decoration: none;
   color: black;
 }
+.logoImg {
+  height: 50px; /* או הגובה שאת רוצה */
+  width: auto; /* יחס הגובה-רוחב נשמר */
+}
 
 .nav {
   display: flex;

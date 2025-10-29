@@ -17,8 +17,18 @@ interface Product {
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCartStore();
-  const { addToWishlist } = useWishlistStore();
   const { openCart } = useUIStore();
+  const { wishlist, addToWishlist, removeFromWishlist } = useWishlistStore();
+
+  const isInWishlist = wishlist.some((p) => p.id === product.id);
+
+  const toggleWishlist = () => {
+    if (isInWishlist) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  };
 
   return (
     <div className={styles.card}>
@@ -28,6 +38,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <h3>{product.title}</h3>
       <p className={styles.category}>{product.category}</p>
       <p className={styles.desc}>{product.description.slice(0, 100)}...</p>
+
       <div className={styles.bottom}>
         <span className={styles.price}>${product.price}</span>
         <div className={styles.buttons}>
@@ -39,7 +50,15 @@ export default function ProductCard({ product }: { product: Product }) {
           >
             Add to Cart
           </button>
-          <button onClick={() => addToWishlist(product)}>♡</button>
+
+          <button
+            onClick={toggleWishlist}
+            className={
+              isInWishlist ? styles.activeWishlistBtn : styles.wishlistBtn
+            }
+          >
+            ♥
+          </button>
         </div>
       </div>
     </div>

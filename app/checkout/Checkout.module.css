@@ -35,7 +35,7 @@
 }
 
 .actions button {
-  background-color: #ff4d4f;
+  background-color: #f8a300;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -44,7 +44,7 @@
 }
 
 .actions button:hover {
-  background-color: #ff7875;
+  background-color: #f8a300;
 }
 
 .total {

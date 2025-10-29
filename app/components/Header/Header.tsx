@@ -23,11 +23,13 @@ export default function Header() {
   }, [cart]);
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
+      {/* <div className={styles.logo}>
         <Link href="/">🛍️ MyStore</Link>
-        {/* <Link href="/">
-          <img src="../../logo2.jpg" alt="Logo" />
-        </Link> */}
+      </div> */}
+      <div className={styles.logo}>
+        <Link href="/">
+          <img src="/logo2.jpg" alt="Logo" className={styles.logoImg} />
+        </Link>
       </div>
 
       <nav className={styles.nav}>

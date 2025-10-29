@@ -31,7 +31,7 @@ export default function CategoryPage() {
 
   return (
     <div style={{ padding: "2rem" }}>
-      <h1 style={{ marginBottom: "1rem" }}>{category}</h1>
+      {/* <h1 style={{ marginBottom: "1rem" }}>{category}</h1> */}
       <ProductList products={products} />
     </div>
   );
