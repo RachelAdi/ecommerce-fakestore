@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useParams } from "next/navigation";
@@ -21,7 +22,20 @@ export default function ProductPage() {
   const [loading, setLoading] = useState(true);
 
   const { addToCart } = useCartStore();
-  const { addToWishlist } = useWishlistStore();
+  const { wishlist, addToWishlist, removeFromWishlist } = useWishlistStore();
+
+  const isInWishlist = product
+    ? wishlist.some((p) => p.id === product.id)
+    : false;
+
+  const toggleWishlist = () => {
+    if (!product) return;
+    if (isInWishlist) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  };
 
   useEffect(() => {
     if (!params?.id) return;
@@ -48,7 +62,15 @@ export default function ProductPage() {
             Add to Cart
           </button>
 
-          <button onClick={() => addToWishlist(product)}>♡ Wishlist</button>
+          {/* כפתור לב */}
+          <button
+            onClick={toggleWishlist}
+            className={
+              isInWishlist ? styles.activeWishlistBtn : styles.wishlistBtn
+            }
+          >
+            ♥
+          </button>
         </div>
       </div>
     </div>
