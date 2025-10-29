@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCartStore } from "../../store/cartStore";
+import { useUIStore } from "../../store/uiStore";
 import { useWishlistStore } from "../../store/wishlistStore";
 import styles from "./ProductCard.module.css";
 
@@ -17,6 +18,7 @@ interface Product {
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCartStore();
   const { addToWishlist } = useWishlistStore();
+  const { openCart } = useUIStore();
 
   return (
     <div className={styles.card}>
@@ -29,10 +31,14 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className={styles.bottom}>
         <span className={styles.price}>${product.price}</span>
         <div className={styles.buttons}>
-          <button onClick={() => addToCart({ ...product, quantity: 1 })}>
+          <button
+            onClick={() => {
+              addToCart({ ...product, quantity: 1 });
+              openCart();
+            }}
+          >
             Add to Cart
           </button>
-
           <button onClick={() => addToWishlist(product)}>♡</button>
         </div>
       </div>

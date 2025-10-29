@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ProductList from "./../components/ProductList/ProductList";
+import styles from "./HomePage.module.css";
 
 interface Product {
   id: number;
@@ -23,11 +24,14 @@ export default function HomePage() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <p style={{ padding: "2rem" }}>Loading products...</p>;
+  if (loading) return <p className={styles.loading}>Loading products...</p>;
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1 style={{ marginBottom: "1rem" }}>Latest Products</h1>
+    <div className="homePage">
+      <div className={styles.logoContainer}>
+        <img src="../../logo2.jpg" alt="Logo" className="logo" />
+      </div>
+      <h1 className={styles.title}>Latest Products</h1>
       <ProductList products={products} />
     </div>
   );

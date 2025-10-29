@@ -1,28 +1,46 @@
 .card {
-  background: white;
-  border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 16px;
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
-  height: 160px;
-  object-fit: contain;
   width: 100%;
+  height: 220px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.5rem;
+  height: 2.5rem;
+  overflow: hidden;
 }
 
 .category {
-  font-size: 0.8rem;
-  color: #666;
+  color: #777;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
 }
 
 .desc {
-  font-size: 0.85rem;
-  color: #444;
-  flex: 1;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+  height: 2.8rem;
+  overflow: hidden;
 }
 
 .bottom {
@@ -31,24 +49,47 @@
   align-items: center;
 }
 
+/* מחיר */
 .price {
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000;
 }
 
-.buttons button {
-  margin-left: 0.5rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
+/* כפתורים */
+.buttons {
+  display: flex;
+  gap: 0.5rem;
 }
 
+/* כפתור הוספה לסל */
 .buttons button:first-child {
-  background: #d62d20;
-  color: white;
+  background-color: #f8a300; /* כתום נוטה לזהב */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+.buttons button:first-child:hover {
+  background-color: #e59400; /* כהה יותר מעט */
+  transform: translateY(-2px);
+}
+
+/* כפתור לב */
 .buttons button:last-child {
-  background: #eee;
-  color: #333;
+  background-color: transparent;
+  border: 1px solid #ddd;
+  color: #555;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.buttons button:last-child:hover {
+  border-color: #f8a300;
+  color: #f8a300;
 }

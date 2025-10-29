@@ -31,14 +31,14 @@
 }
 
 .nav a:hover {
-  color: #d62d20;
+  color: #f8a300;
 }
 
 .cart {
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  background: #d62d20;
+  background: #f8a300;
   color: white !important;
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
