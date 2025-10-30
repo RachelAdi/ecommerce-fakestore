@@ -3,26 +3,25 @@
 import { useCartStore } from "../../store/cartStore";
 import { useRouter } from "next/navigation";
 import styles from "./CartDrawer.module.css";
+import UIStore from "@/app/store/uiStore";
 
-interface CartDropdownProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
 
-export default function CartDropdown({ isOpen, onClose }: CartDropdownProps) {
+
+export default function CartDropdown() {
+  const { closeCart, isCartOpen } = UIStore();
   const router = useRouter();
   const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =
     useCartStore();
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) onClose();
+    if (e.target === e.currentTarget) closeCart();
   };
-  if (!isOpen) return null; // 👈 אם לא פתוח – לא מציגים כלום
+  if (!isCartOpen) return null; // 👈 אם לא פתוח – לא מציגים כלום
 
   return (
     <div className={styles.overlay} onClick={handleOverlayClick}>
       <div className={styles.dropdown}>
-        <button className={styles.closeBtn} onClick={onClose}>
+        <button className={styles.closeBtn} onClick={closeCart}>
           ✕
         </button>
         <h3>Your Cart</h3>
@@ -61,7 +60,7 @@ export default function CartDropdown({ isOpen, onClose }: CartDropdownProps) {
             <button
               className={styles.viewCart}
               onClick={() => {
-                onClose();
+                closeCart();
                 router.push("/checkout");
               }}
             >

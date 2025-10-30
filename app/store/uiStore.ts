@@ -6,8 +6,10 @@ interface UIStore {
   closeCart: () => void;
 }
 
-export const useUIStore = create<UIStore>((set) => ({
+const UIStore = create<UIStore>((set) => ({
   isCartOpen: false,
   openCart: () => set({ isCartOpen: true }),
   closeCart: () => set({ isCartOpen: false }),
 }));
+
+export default UIStore;

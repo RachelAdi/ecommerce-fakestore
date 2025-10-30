@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 "use client";
 
 import Link from "next/link";
 import { useCartStore } from "../../store/cartStore";
-import { useUIStore } from "../../store/uiStore";
+import UIStore from "@/app/store/uiStore";
 import { useWishlistStore } from "../../store/wishlistStore";
 import styles from "./ProductCard.module.css";
 
@@ -17,18 +18,12 @@ interface Product {
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCartStore();
-  const { openCart } = useUIStore();
+  const { openCart } = UIStore();
   const { wishlist, addToWishlist, removeFromWishlist } = useWishlistStore();
 
   const isInWishlist = wishlist.some((p) => p.id === product.id);
 
-  const toggleWishlist = () => {
-    if (isInWishlist) {
-      removeFromWishlist(product.id);
-    } else {
-      addToWishlist(product);
-    }
-  };
+  const toggleWishlist = () => { isInWishlist ? removeFromWishlist(product.id) : addToWishlist(product) };
 
   return (
     <div className={styles.card}>
