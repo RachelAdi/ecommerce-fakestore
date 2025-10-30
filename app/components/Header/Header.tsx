@@ -1,26 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react"; // ✅ הוספה של useEffect ו useRef
-import CartDrawer from "../CartDrawer/CartDrawer"; // ✅ הוספה
+import { useEffect, useRef } from "react";
+import CartDrawer from "../CartDrawer/CartDrawer";
 import { useCartStore } from "@/app/store/cartStore";
 import styles from "./Header.module.css";
 import { FaShoppingCart } from "react-icons/fa";
+import UIStore from "@/app/store/uiStore";
+
 
 export default function Header() {
+  const { openCart } = UIStore();
   const { cart } = useCartStore();
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const [isCartOpen, setIsCartOpen] = useState(false); // ✅ ניהול פתיחה/סגירה
+  // const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // ✅ כאן שמים את ה-useEffect
   const prevCartCount = useRef(cart.length);
+
   useEffect(() => {
     if (cart.length > prevCartCount.current) {
-      setIsCartOpen(true); // פותחים את החלונית אוטומטית כשמוסיפים מוצר
+      openCart(); // Open cart drawer on item addition
     }
     prevCartCount.current = cart.length;
   }, [cart]);
+
+  // useEffect(() => {
+  //   if (cart.length > prevCartCount.current) {
+  //     setIsCartOpen(true); // Open cart drawer on item addition
+  //   }
+  //   prevCartCount.current = cart.length;
+  // }, [cart]);
+
   return (
     <header className={styles.header}>
       {/* <div className={styles.logo}>
@@ -40,11 +51,11 @@ export default function Header() {
         <Link href="/category/women's clothing">Women</Link>
         <Link href="/wishlist">Wishlist</Link>
 
-        <button className={styles.cart} onClick={() => setIsCartOpen(true)}>
+        <button className={styles.cart} onClick={() => openCart()}>
           <FaShoppingCart /> <span>{cartCount}</span>
         </button>
       </nav>
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <CartDrawer />
     </header>
   );
 }
